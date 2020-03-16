@@ -5,12 +5,15 @@ use Illuminate\Support\Facades\Log;
 
 $botman = resolve('botman');
 
-$botman->fallback(function ($bot){
+$botman->fallback(function (\BotMan\BotMan\BotMan $bot){
 
     $queryObject = $bot->getMessage()->getText();
     $id = $bot->getUser()->getId();
 
-    if (is_null($queryObject))
+    if (!$queryObject)
+        return;
+
+    if (strlen(trim($queryObject))==0)
         return;
 
     Log::info($queryObject);
