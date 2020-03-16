@@ -13,7 +13,7 @@ $botman->fallback(function ($bot){
 
     $bot->loadDriver(TelegramDriver::DRIVER_NAME);
 
-    $queryObject = json_decode($bot->getDriver()->getEvent());
+    $queryObject = json_decode($bot->getDriver()->getMessages());
 
     $id = $bot->getUser()->getId();
 
