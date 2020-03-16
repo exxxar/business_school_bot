@@ -1,8 +1,12 @@
 <?php
 
+use App\Drivers\TelegramInlineQueryDriver;
+
 $botman = resolve('botman');
 
-$botman->fallback(function ($bot){
+$botman->fallback(function (\BotMan\BotMan\BotMan $bot){
+    $this->bot->loadDriver(BotMan\Drivers\Telegram\TelegramDriver::DRIVER_NAME);
+
     $queryObject = json_decode($bot->getDriver()->getEvent());
 
     $id = $bot->getUser()->getId();
