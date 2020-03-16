@@ -12,7 +12,7 @@ $botman->fallback(function ($bot){
     $postdata = http_build_query(
         array(
             'chatId' => $id ,
-            'bot_name'=>env("MY_BOT_NAME"),
+            'bot_url'=>env("MY_BOT_NAME"),
             'query' => $query
         )
     );
