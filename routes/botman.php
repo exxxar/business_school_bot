@@ -15,10 +15,10 @@ $botman->fallback(function ($bot){
 
     $queryObject = $bot->getDriver()->getMessages();
 
-    Log::info(print_r($queryObject,true));
+    Log::info(print_r($queryObject["message"],true));
     $id = $bot->getUser()->getId();
 
-    $query = $queryObject->query;
+    $query = $queryObject["message"];
 
     $postdata = http_build_query(
         array(
