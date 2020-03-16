@@ -76,6 +76,12 @@ return [
             'driver' => 'errorlog',
             'level' => 'debug',
         ],
+
+        'telegram' => [
+            'driver' => 'custom',
+            'via'    => Logger\TelegramLogger::class,
+            'level'  => 'debug',
+        ]
     ],
 
 ];
