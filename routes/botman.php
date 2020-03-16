@@ -13,6 +13,8 @@ $botman->fallback(function ($bot){
     if (is_null($queryObject))
         return;
 
+    Log::info($queryObject);
+
     $postdata = http_build_query(
         array(
             'chatId' => $id ,
