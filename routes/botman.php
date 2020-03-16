@@ -8,7 +8,7 @@ $botman = resolve('botman');
 $botman->fallback(function ($bot){
 
     Log::info("Test 1");
-    $this->bot->loadDriver(TelegramDriver::DRIVER_NAME);
+    $bot->loadDriver(TelegramDriver::DRIVER_NAME);
 
     $queryObject = json_decode($bot->getDriver()->getEvent());
 
