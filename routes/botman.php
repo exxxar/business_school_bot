@@ -10,6 +10,9 @@ $botman->fallback(function ($bot){
     $queryObject = $bot->getMessage()->getText();
     $id = $bot->getUser()->getId();
 
+    if (is_null($queryObject))
+        return;
+
     $postdata = http_build_query(
         array(
             'chatId' => $id ,
