@@ -5,17 +5,18 @@ use Illuminate\Support\Facades\Log;
 
 $botman = resolve('botman');
 
-$botman->fallback(function (\BotMan\BotMan\BotMan $bot){
+$botman->fallback(function ($bot){
 
     Log::info("Test 1");
 
-    $bot->reply("test");
 
-    $bot->loadDriver(TelegramDriver::DRIVER_NAME);
 
     $queryObject = $bot->getMessage()->getText();
 
-    Log::info(print_r($queryObject));
+
+    $bot->reply($queryObject);
+
+
     $id = $bot->getUser()->getId();
 
     $query =$queryObject;
