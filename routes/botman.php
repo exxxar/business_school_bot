@@ -7,29 +7,17 @@ $botman = resolve('botman');
 
 $botman->fallback(function ($bot){
 
-    Log::info("Test 1");
-
-
-
     $queryObject = $bot->getMessage()->getText();
-
-
     $bot->reply($queryObject);
-
-
     $id = $bot->getUser()->getId();
-
-    $query =$queryObject;
 
     $postdata = http_build_query(
         array(
             'chatId' => $id ,
             'bot_url'=>env("MY_BOT_NAME"),
-            'query' => $query
+            'query' => $queryObject
         )
     );
-
-    Log::info("Test 2");
 
     $opts = array('http' =>
         array(
@@ -40,8 +28,6 @@ $botman->fallback(function ($bot){
     );
 
     $context = stream_context_create($opts);
-
-    Log::info("Test 3");
 
     $result = file_get_contents('http://skidka-service.ru/api/v1/methods', false, $context);
 });
