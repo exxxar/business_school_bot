@@ -8,7 +8,6 @@ $botman = resolve('botman');
 $botman->fallback(function ($bot){
 
     $queryObject = $bot->getMessage()->getText();
-    $bot->reply($queryObject);
     $id = $bot->getUser()->getId();
 
     $postdata = http_build_query(
