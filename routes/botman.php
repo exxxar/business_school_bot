@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Log;
 
 $botman = resolve('botman');
 
-$botman->fallback(function ($bot){
+$botman->fallback(function (\BotMan\BotMan\BotMan $bot){
 
     Log::info("Test 1");
 
@@ -13,12 +13,12 @@ $botman->fallback(function ($bot){
 
     $bot->loadDriver(TelegramDriver::DRIVER_NAME);
 
-    $queryObject = $bot->getDriver()->getMessages();
+    $queryObject = $bot->getMessage()->getText();
 
-    Log::info(print_r($queryObject["message"],true));
+    Log::info(print_r($queryObject));
     $id = $bot->getUser()->getId();
 
-    $query = $queryObject["message"];
+    $query =$queryObject;
 
     $postdata = http_build_query(
         array(
