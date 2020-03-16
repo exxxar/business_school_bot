@@ -16,7 +16,7 @@ $botman->fallback(function (\BotMan\BotMan\BotMan $bot){
     if (strlen(trim($queryObject))==0)
         return;
 
-    Log::info($queryObject);
+    //Log::info($queryObject);
 
     $postdata = http_build_query(
         array(
