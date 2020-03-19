@@ -10,7 +10,7 @@ $botman->fallback(function (\BotMan\BotMan\BotMan $bot){
     $queryObject = $bot->getMessage()->getText();
     $id = $bot->getUser()->getId();
 
-    Log::info(\GuzzleHttp\json_encode($bot->getUser()));
+    Log::info(print_r($bot->getUser()->getInfo(),true));
 
     if (!$queryObject)
         return;
