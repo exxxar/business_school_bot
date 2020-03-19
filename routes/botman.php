@@ -18,11 +18,11 @@ $botman->fallback(function (\BotMan\BotMan\BotMan $bot) {
     $data = array(
         'user' => json_encode($bot->getUser()->getInfo()),
         'bot_url' => env("MY_BOT_NAME"),
-        'message_id' => isset($bot->getMessage()->getPayload()["message_id"]) ? $bot->getMessage()->getPayload()["message_id"] : null,
+        //'message_id' => isset($bot->getMessage()->getPayload()["message_id"]) ? $bot->getMessage()->getPayload()["message_id"] : null,
         'query' => $queryObject ?? ''
     );
 
-    Log::info(print_r($data,true));
+ //   Log::info(print_r($data,true));
 
     $postdata = http_build_query($data);
 
