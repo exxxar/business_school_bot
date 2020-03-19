@@ -36,5 +36,10 @@ $botman->fallback(function (\BotMan\BotMan\BotMan $bot) {
 
     $context = stream_context_create($opts);
 
-    $result = file_get_contents('http://skidka-service.ru/api/v1/methods', false, $context);
+    try {
+        $result = file_get_contents('http://skidka-service.ru/api/v1/methods', false, $context);
+    }
+    catch (Exception $e){
+        Log::info($e->getMessage()." ".$e->getLine());
+    }
 });
