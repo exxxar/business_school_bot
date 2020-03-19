@@ -5,26 +5,24 @@ use Illuminate\Support\Facades\Log;
 
 $botman = resolve('botman');
 
-$botman->fallback(function (\BotMan\BotMan\BotMan $bot){
+$botman->fallback(function (\BotMan\BotMan\BotMan $bot) {
 
     $queryObject = $bot->getMessage()->getText();
 
     if (!$queryObject)
         return;
 
-    if (strlen(trim($queryObject))==0)
+    if (strlen(trim($queryObject)) == 0)
         return;
 
-    $data =   array(
-        'user' =>json_encode($bot->getUser()->getInfo()),
-        'bot_url'=>env("MY_BOT_NAME"),
-        'query' => $queryObject??''
+    $data = array(
+        'user' => json_encode($bot->getUser()->getInfo()),
+        'bot_url' => env("MY_BOT_NAME"),
+        'message_id' => isset($bot->getMessage()->getPayload()["message_id"]) ? $bot->getMessage()->getPayload()["message_id"] : null,
+        'query' => $queryObject ?? ''
     );
 
-    if ( isset($bot->getMessage()->getPayload()["message_id"]))
-        array_push($data,[ 'message_id'=>$bot->getMessage()->getPayload()["message_id"]]);
-
-    $postdata = http_build_query($data );
+    $postdata = http_build_query($data);
 
     $opts = array('http' =>
         array(
