@@ -18,7 +18,7 @@ $botman->fallback(function (\BotMan\BotMan\BotMan $bot){
     $data =   array(
         'user' =>json_encode($bot->getUser()->getInfo()),
         'bot_url'=>env("MY_BOT_NAME"),
-        'query' => $queryObject
+        'query' => $queryObject??''
     );
 
     if ( isset($bot->getMessage()->getPayload()["message_id"]))
