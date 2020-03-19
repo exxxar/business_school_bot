@@ -8,7 +8,6 @@ $botman = resolve('botman');
 $botman->fallback(function (\BotMan\BotMan\BotMan $bot){
 
     $queryObject = $bot->getMessage()->getText();
-    $id = $bot->getUser()->getId();
 
     if (!$queryObject)
         return;
@@ -20,7 +19,7 @@ $botman->fallback(function (\BotMan\BotMan\BotMan $bot){
     $postdata = http_build_query(
         array(
             'user' =>json_encode($bot->getUser()->getInfo()),
-            'message_id'=>$this->bot->getMessage()->getPayload()["message_id"]??null,
+            'message_id'=>$bot->getMessage()->getPayload()["message_id"]??null,
             'bot_url'=>env("MY_BOT_NAME"),
             'query' => $queryObject
         )
