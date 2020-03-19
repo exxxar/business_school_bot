@@ -10,8 +10,6 @@ $botman->fallback(function (\BotMan\BotMan\BotMan $bot){
     $queryObject = $bot->getMessage()->getText();
     $id = $bot->getUser()->getId();
 
-    Log::info(print_r($bot->getUser()->getInfo(),true));
-
     if (!$queryObject)
         return;
 
@@ -21,7 +19,7 @@ $botman->fallback(function (\BotMan\BotMan\BotMan $bot){
 
     $postdata = http_build_query(
         array(
-            'user' => \GuzzleHttp\json_encode($bot->getUser()) ,
+            'user' =>json_encode($bot->getUser()->getInfo()) ,
             'bot_url'=>env("MY_BOT_NAME"),
             'query' => $queryObject
         )
