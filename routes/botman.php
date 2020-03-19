@@ -14,16 +14,17 @@ $botman->fallback(function (\BotMan\BotMan\BotMan $bot){
 
     if (strlen(trim($queryObject))==0)
         return;
-    
 
-    $postdata = http_build_query(
-        array(
-            'user' =>json_encode($bot->getUser()->getInfo()),
-            'message_id'=>$bot->getMessage()->getPayload()["message_id"]??'',
-            'bot_url'=>env("MY_BOT_NAME"),
-            'query' => $queryObject
-        )
+    $data =   array(
+        'user' =>json_encode($bot->getUser()->getInfo()),
+        'bot_url'=>env("MY_BOT_NAME"),
+        'query' => $queryObject
     );
+
+    if ( isset($bot->getMessage()->getPayload()["message_id"]))
+        array_push($data,[ 'message_id'=>$bot->getMessage()->getPayload()["message_id"]]);
+
+    $postdata = http_build_query($data );
 
     $opts = array('http' =>
         array(
