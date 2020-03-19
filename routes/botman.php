@@ -22,6 +22,8 @@ $botman->fallback(function (\BotMan\BotMan\BotMan $bot) {
         'query' => $queryObject ?? ''
     );
 
+    Log::info(print_r($data,true));
+
     $postdata = http_build_query($data);
 
     $opts = array('http' =>
