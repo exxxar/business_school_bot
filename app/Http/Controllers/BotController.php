@@ -17,7 +17,7 @@ class BotController extends Controller
 
             $postdata = http_build_query(
                 array(
-                    'username' => "admin@gmail.com",
+                    'email' => "admin@gmail.com",
                     'password' => "adminsecret",
                     'remember_me' => 1
                 )
@@ -33,7 +33,7 @@ class BotController extends Controller
 
             $context = stream_context_create($opts);
 
-            $result = file_get_contents('http://skidka-service.ru/api/v1/auth', false, $context);
+            $result = file_get_contents('http://skidka-service.ru/api/v1/auth/login', false, $context);
 
             Log::info(print_r($result));
         }
