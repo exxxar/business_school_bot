@@ -22,8 +22,11 @@ class BotController extends Controller
 
         $update = json_decode($telegram->getWebhookUpdate());
 
-        if (!isset($update->channel_post))
-            Log::info(print_r($update, true));
+        if (!isset($update->channel_post)){
+            Log::info($update->message->message_id);
+            Log::info($update->message->text);
+        }
+
 
     }
     /*    public function fallback($bot)
