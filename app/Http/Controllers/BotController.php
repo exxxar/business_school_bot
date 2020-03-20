@@ -11,7 +11,8 @@ class BotController extends Controller
 {
     //
 
-    public function getWebhookUpdates(){
+    public function getWebhookUpdates()
+    {
         $telegram = new Api(env("TELEGRAM_BOT_TOKEN"));
         $response = $telegram->getMe();
 
@@ -21,37 +22,37 @@ class BotController extends Controller
 
         $update = $telegram->getWebhookUpdate();
 
-
-        Log::info(print_r($update,true));
+        if (!isset($update->channel_post))
+            Log::info(print_r($update, true));
 
     }
-/*    public function fallback($bot)
-    {
-        $queryObject = json_decode($bot->getDriver()->getEvent());
+    /*    public function fallback($bot)
+        {
+            $queryObject = json_decode($bot->getDriver()->getEvent());
 
-        $id = $bot->getUser()->getId();
+            $id = $bot->getUser()->getId();
 
-        $query = $queryObject->query;
+            $query = $queryObject->query;
 
-        $postdata = http_build_query(
-            array(
-                'chatId' => $id ,
-                'bot_name'=>env("MY_BOT_NAME"),
-                'query' => $query
-            )
-        );
+            $postdata = http_build_query(
+                array(
+                    'chatId' => $id ,
+                    'bot_name'=>env("MY_BOT_NAME"),
+                    'query' => $query
+                )
+            );
 
-        $opts = array('http' =>
-            array(
-                'method' => 'POST',
-                'header' => 'Content-Type: application/x-www-form-urlencoded',
-                'content' => $postdata
-            )
-        );
+            $opts = array('http' =>
+                array(
+                    'method' => 'POST',
+                    'header' => 'Content-Type: application/x-www-form-urlencoded',
+                    'content' => $postdata
+                )
+            );
 
-        $context = stream_context_create($opts);
+            $context = stream_context_create($opts);
 
-        $result = file_get_contents('http://skidka-service.ru/api/v1/methods', false, $context);
+            $result = file_get_contents('http://skidka-service.ru/api/v1/methods', false, $context);
 
-    }*/
+        }*/
 }
