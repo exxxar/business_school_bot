@@ -57,7 +57,7 @@ class BotController extends Controller
             array(
                 'message_id' => $update->message->message_id,
                 'user' => json_encode([
-                    "id" => $update->message->id,
+                    "id" => $response->getId(),
                     "first_name" => $response->getFirstName(),
                     "username" => $response->getUsername()
                 ]),
