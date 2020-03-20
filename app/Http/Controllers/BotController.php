@@ -53,7 +53,7 @@ class BotController extends Controller
 
         $postdata = http_build_query(
             array(
-                'message_id' => $update->message->message_id,
+                'message_id' => $update->message->message_id??$update->callback_query->message->message_id,
                 'user' => json_encode([
                     "id" => $update->message->from->id ?? $update->callback_query->from->id,
                     "first_name" => $update->message->from->first_name ?? $update->callback_query->from->first_name,
