@@ -4,12 +4,28 @@ namespace App\Http\Controllers;
 
 use BotMan\BotMan\BotMan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Telegram\Bot\Api;
 
 class BotController extends Controller
 {
     //
 
-    public function fallback($bot)
+    public function getWebhookUpdates(){
+        $telegram = new Api(env("TELEGRAM_BOT_TOKEN"));
+        $response = $telegram->getMe();
+
+        $botId = $response->getId();
+        $firstName = $response->getFirstName();
+        $username = $response->getUsername();
+
+        $update = $telegram->getWebhookUpdate();
+
+
+        Log::info(print_r($update,true));
+
+    }
+/*    public function fallback($bot)
     {
         $queryObject = json_decode($bot->getDriver()->getEvent());
 
@@ -37,5 +53,5 @@ class BotController extends Controller
 
         $result = file_get_contents('http://skidka-service.ru/api/v1/methods', false, $context);
 
-    }
+    }*/
 }

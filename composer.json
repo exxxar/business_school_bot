@@ -18,6 +18,7 @@
         "botman/tinker": "~1.0",
         "fideloper/proxy": "^4.0",
         "grkamil/laravel-telegram-logging": "^1.2",
+        "irazasyed/telegram-bot-sdk": "^3.0",
         "laravel-notification-channels/telegram": "^0.2.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0"
