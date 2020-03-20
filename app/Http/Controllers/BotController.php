@@ -35,7 +35,7 @@ class BotController extends Controller
 
             $token = json_decode(file_get_contents('http://skidka-service.ru/api/v1/auth/login', false, $context))->access_token;
 
-            session("robo_user",json_encode([
+            $request->session()->push("robo_user",json_encode([
                 "access_token"=>$token
             ]));
 
@@ -50,7 +50,7 @@ class BotController extends Controller
             return;
 
         Log::info($update->message->message_id);
-        Log::info($update->message->id);
+        Log::info($response->getId());
         Log::info($update->message->text);
 
         $postdata = http_build_query(
