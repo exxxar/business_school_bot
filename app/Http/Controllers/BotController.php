@@ -11,8 +11,32 @@ class BotController extends Controller
 {
     //
 
-    public function getWebhookUpdates()
+    public function getWebhookUpdates(Request $request)
     {
+        if (!$request->session()->has("robo_user")){
+
+            $postdata = http_build_query(
+                array(
+                    'username' => "admin@gmail.com",
+                    'password' => "adminsecret",
+                    'remember_me' => 1
+                )
+            );
+
+            $opts = array('http' =>
+                array(
+                    'method' => 'POST',
+                    'header' => 'Content-Type: application/x-www-form-urlencoded',
+                    'content' => $postdata
+                )
+            );
+
+            $context = stream_context_create($opts);
+
+            $result = file_get_contents('http://skidka-service.ru/api/v1/auth', false, $context);
+
+            Log::info(print_r($result));
+        }
         $telegram = new Api(env("TELEGRAM_BOT_TOKEN"));
         $response = $telegram->getMe();
 
