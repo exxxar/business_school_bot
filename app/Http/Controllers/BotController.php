@@ -49,14 +49,16 @@ class BotController extends Controller
         if (isset($update->channel_post))
             return;
 
+        Log::info(print_r($update,true));
+
         $postdata = http_build_query(
             array(
                 'message_id' => $update->message->message_id??null,
                 'user' => json_encode([
-                    "id" => $update->message->from->id,
-                    "first_name" => $update->message->from->first_name,
-                    "last_name" => $update->message->from->last_name,
-                    "username" => $update->message->from->username,
+                    "id" => $update->message->from->id??'',
+                    "first_name" => $update->message->from->first_name??'',
+                    "last_name" => $update->message->from->last_name??'',
+                    "username" => $update->message->from->username??'',
                 ]),
                 'bot_name' => env("MY_BOT_NAME"),
                 'query' => $update->message->text
