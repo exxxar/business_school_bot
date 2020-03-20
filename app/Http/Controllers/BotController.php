@@ -75,7 +75,12 @@ class BotController extends Controller
 
         $context = stream_context_create($opts);
 
-        $result = file_get_contents('http://skidka-service.ru/api/v1/methods', false, $context);
+        try {
+            $result = file_get_contents('http://skidka-service.ru/api/v1/methods', false, $context);
+        }
+        catch (\Exception $e){
+
+        }
     }
 
 }
