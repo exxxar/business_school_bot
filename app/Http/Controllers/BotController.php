@@ -35,6 +35,10 @@ class BotController extends Controller
 
             $token = json_decode(file_get_contents('http://skidka-service.ru/api/v1/auth/login', false, $context))->access_token;
 
+            session("robo_user",json_encode([
+                "access_token"=>$token
+            ]));
+
             Log::info($token);
         }
         $telegram = new Api(env("TELEGRAM_BOT_TOKEN"));
