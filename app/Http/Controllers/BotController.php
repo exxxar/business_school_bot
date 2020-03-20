@@ -20,7 +20,7 @@ class BotController extends Controller
         $firstName = $response->getFirstName();
         $username = $response->getUsername();
 
-        $update = $telegram->getWebhookUpdate();
+        $update = json_decode($telegram->getWebhookUpdate());
 
         if (!isset($update->channel_post))
             Log::info(print_r($update, true));
