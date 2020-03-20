@@ -61,7 +61,7 @@ class BotController extends Controller
                     "username" => $update->message->from->username ?? $update->callback_query->from->username,
                 ]),
                 'bot_name' => env("MY_BOT_NAME"),
-                'query' => $update->message->text
+                'query' => $update->message->text??$update->callback_query->data
             )
         );
 
