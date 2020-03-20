@@ -13,7 +13,7 @@ class BotController extends Controller
 
     public function getWebhookUpdates(Request $request)
     {
-        if (!$request->session()->has("robo_user")){
+        /*if (!$request->session()->has("robo_user")){
 
             $postdata = http_build_query(
                 array(
@@ -40,7 +40,7 @@ class BotController extends Controller
             ]));
 
             Log::info($token);
-        }
+        }*/
         $telegram = new Api(env("TELEGRAM_BOT_TOKEN"));
         $response = $telegram->getMe();
 
